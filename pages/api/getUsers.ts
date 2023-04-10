@@ -16,10 +16,10 @@ export default async function handler(
 
   // Conexão com o banco
   const pool = mysql.createPool({
-    host: 'localhost',
+    host: '127.0.0.1',
     user: 'root',
-    password: '123456',
-    database: 'simulacao',
+    password: '1234',
+    database: 'crud',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -27,7 +27,7 @@ export default async function handler(
 
   try {
     // executa sql no banco
-    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM users')
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM crud.usuarios')
 
     // percorre e extrai resultado (users)
     const users = rows.map((row) => ({
