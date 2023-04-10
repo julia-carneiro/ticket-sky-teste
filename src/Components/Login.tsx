@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import logoAzulEscuro from '../assets/logoAzulEscuro.png'
 import axios from 'axios';
 
@@ -30,7 +31,13 @@ function Login() {
         <button className="w-full px-10 py-2 bg-blue-600 text-white rounded-md 
         hover:bg-blue-500 hoover:drop-shadow-md duration-300 ease-in">Login</button>
 
-        <button className="w-full text-blue-600 text-sm font-light hover:underline">Fazer Cadastro</button>
+        <div>
+            <Link to="/Cadastro">
+              <button className="w-full text-blue-600 text-sm font-light hover:underline">Fazer Cadastro</button>
+            </Link>
+            
+        </div>
+
       </form>
     </div>
  

@@ -6,6 +6,7 @@ export default function teste() {
 
   const handleClick = async () => {
     const response = await axios.get("/api/getUsers");
+    console.log("Click")
     console.log(response.data)
   }
   
