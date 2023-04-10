@@ -4,6 +4,26 @@ import axios from 'axios';
 
 function Cadastro() {
 
+  function cadastraUsuario(){
+    var email = (document.getElementById("email") as HTMLInputElement).value;
+    var senha = (document.getElementById("password") as HTMLInputElement).value;
+
+    axios({
+      method: 'post',
+      url: '/api/insertUser',
+      data: {
+        nome: '',
+        email: email,
+        senha: senha
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-cover bg-[url('assets/tela.png')]">
       <form className="p-10 bg-white rounded-xl drop-shadow-lg space-y-5" action="">
@@ -30,9 +50,9 @@ function Cadastro() {
         </div>
 
         <button className="w-full px-10 py-2 bg-blue-600 text-white rounded-md 
-        hover:bg-blue-500 hoover:drop-shadow-md duration-300 ease-in">Fazer Cadastro</button>
+        hover:bg-blue-500 hoover:drop-shadow-md duration-300 ease-in" type="button" onClick={cadastraUsuario}>Fazer Cadastro</button>
 
-        
+    
         
       </form>
     </div>
