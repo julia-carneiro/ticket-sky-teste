@@ -23,8 +23,8 @@ export default async function handler(
   const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '123456',
-    database: 'simulacao',
+    password: '1234',
+    database: 'user',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0

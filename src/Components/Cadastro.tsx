@@ -14,7 +14,7 @@ function Cadastro() {
       data: {
         nome: '',
         email: email,
-        senha: senha
+        password: senha
       }
     })
     .then((response) => {

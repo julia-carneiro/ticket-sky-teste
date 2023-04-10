@@ -8,14 +8,14 @@ function Login() {
   function checaLogin(){
     
     var email = (document.getElementById("email") as HTMLInputElement).value;
-    var senha = (document.getElementById("password") as HTMLInputElement).value;
+    var  senha = (document.getElementById("password") as HTMLInputElement).value;
 
     axios({
       method: 'get',
       url: '/api/login',
       data: {
         email: email,
-        senha: senha
+        password: senha
       }
     })
     .then((response) => {
