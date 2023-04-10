@@ -36,7 +36,7 @@ export default async function handler(
 
     if ((result as RowDataPacket[]).length > 0) {
 
-      const user = result[1] as User;
+      const user = result[0] as User;
       res.status(200).json(user);
 
     } else {
