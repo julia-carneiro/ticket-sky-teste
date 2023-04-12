@@ -39,8 +39,12 @@ export default async function handler(
     console.error(error)
     // manda retorno (erro)
     res.status(500).json({ success: false })
+    
   } finally {
     // finaliza conexão
     pool.end()
   }
+  
+  
 }
+
