@@ -1,27 +1,31 @@
 
 import logoAzulEscuro from '../assets/logoAzulEscuro.png'
 import axios from 'axios';
+import { Link, redirect } from 'react-router-dom';
+
 
 function Cadastro() {
 
   function cadastraUsuario(){
-    var email = (document.getElementById("email") as HTMLInputElement).value;
-    var senha = (document.getElementById("password") as HTMLInputElement).value;
+    // var email = (document.getElementById("email") as HTMLInputElement).value;
+    // var senha = (document.getElementById("password") as HTMLInputElement).value;
 
-    axios({
-      method: 'post',
-      url: '/api/insertUser',
-      data: {
-        nome: '',
-        email: email,
-        senha: senha
-      }
-    })
-    .then((response) => {
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-    });
+    // axios({
+    //   method: 'post',
+    //   url: '/api/insertUser',
+    //   data: {
+    //     nome: '',
+    //     email: email,
+    //     senha: senha
+    //   }
+    // })
+    // .then((response) => {
+    //   console.log(response);
+    // }, (error) => {
+    //   console.log(error);
+    // });
+
+    window.location.href = '/usuarios';
   }
 
   return (
@@ -51,9 +55,7 @@ function Cadastro() {
 
         <button className="w-full px-10 py-2 bg-blue-600 text-white rounded-md 
         hover:bg-blue-500 hoover:drop-shadow-md duration-300 ease-in" type="button" onClick={cadastraUsuario}>Fazer Cadastro</button>
-
-    
-        
+      
       </form>
     </div>
  

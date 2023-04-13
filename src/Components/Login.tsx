@@ -1,29 +1,36 @@
 
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import logoAzulEscuro from '../assets/logoAzulEscuro.png'
 import axios from 'axios';
 
 function Login() {
 
+  interface User {
+    id: number;
+    name: string;
+    email: string;
+  }
   function checaLogin(){
     
     var email = (document.getElementById("email") as HTMLInputElement).value;
     var senha = (document.getElementById("password") as HTMLInputElement).value;
-
+    
     axios({
-      method: 'get',
+      method: 'post',
       url: '/api/login',
       data: {
         email: email,
-        senha: senha
+        password: senha
       }
     })
     .then((response) => {
-      console.log(response);
+      return sessionStorage.setItem('usuarioLogado', JSON.stringify(response.data));
     }, (error) => {
       console.log(error);
     });
-  
+    
+    //console.log(sessionStorage.getItem('usuarioLogado'));
+    window.location.href = '/usuarioLogado';
   }
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-cover bg-[url('assets/tela.png')]">
