@@ -25,9 +25,13 @@ export default async function handler(
     queueLimit: 0
   })
 
+  const email = req.body.email;
+  const password = req.body.password;
+
+
   try {
     // executa sql no banco
-    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM users')
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM users WHERE email=? AND password = ?', [email, password]);
 
     // percorre e extrai resultado (users)
     const users = rows.map((row) => ({
