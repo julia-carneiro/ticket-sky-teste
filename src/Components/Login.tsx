@@ -20,10 +20,13 @@ function Login() {
       }
     })
       .then((response) => {
-        console.log(response);
+        return sessionStorage.setItem('usuarioLogado', JSON.stringify(response.data));
       }, (error) => {
         console.log(error);
       });
+
+    //console.log(sessionStorage.getItem('usuarioLogado'));
+    window.location.href = '/usuarioLogado';
 
   }
   return (
