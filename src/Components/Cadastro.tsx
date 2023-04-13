@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function Cadastro() {
-  /*const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,16 +31,16 @@ function Cadastro() {
       }, (error) => {
         console.log(error);
         toast.error('Não foi possível cadastrar o usuário');
-      });*/
+      });
 
-  window.location.href = '/usuarios';
-
+    window.location.href = '/usuarios';
+  }
 
 
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-cover bg-[url('assets/tela.png')]">
       <ToastContainer />
-      <form className="p-10 bg-white rounded-xl drop-shadow-lg space-y-5" /*onSubmit={onSubmit}*/ action="" >
+      <form className="p-10 bg-white rounded-xl drop-shadow-lg space-y-5" onSubmit={onSubmit} action="" >
         <div className="flex justify-center">
           <img src={logoAzulEscuro} className="object-cover h-20 w-40" alt="Logo" />
         </div>
@@ -50,7 +50,7 @@ function Cadastro() {
           <input
             className="w-96 px-3 py-2 rounded-md border border-slate-400" type="text"
             placeholder="Digite seu e-mail" name="email" id="email"
-          //value={email} onChange={(e) => setEmail(e.target.value)} required
+            value={email} onChange={(e) => setEmail(e.target.value)} required
           />
         </div>
 
@@ -59,7 +59,7 @@ function Cadastro() {
           <input
             className="w-96 px-3 py-2 rounded-md border border-slate-400" type="password"
             placeholder="Digite sua senha" name="password" id="password"
-          //value={password} onChange={(e) => setPassword(e.target.value)} required
+            value={password} onChange={(e) => setPassword(e.target.value)} required
           />
         </div>
 

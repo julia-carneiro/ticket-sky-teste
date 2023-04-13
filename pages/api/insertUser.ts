@@ -13,16 +13,16 @@ export default async function handler(
 ) {
 
   // Recupera informações da requisição
-  const username = "req.body.username";
+  const name = req.body.nome;
   const email = req.body.email
-  const password = req.body.password
+  const password = req.body.senha
 
   // Cria conexão com o banco
   const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '1234',
-    database: 'user',
+    password: '123456',
+    database: 'simulacao',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -30,7 +30,7 @@ export default async function handler(
 
   try {
     // executa o sql para inserir
-    await pool.query('INSERT INTO users SET ?', {username, email, password })
+    await pool.query('INSERT INTO users SET ?', {name, email, password })
 
     // manda retorno (sucesso)
     res.status(200).json({ success: true })
@@ -39,12 +39,8 @@ export default async function handler(
     console.error(error)
     // manda retorno (erro)
     res.status(500).json({ success: false })
-    
   } finally {
     // finaliza conexão
     pool.end()
   }
-  
-  
 }
-

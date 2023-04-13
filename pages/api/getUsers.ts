@@ -3,28 +3,23 @@ import mysql, { RowDataPacket } from 'mysql2/promise'
 
 // constroi o "tipo" pq typescript É CHATO PRA CARALHO
 type User = {
-  success: boolean,
   id: number
   name: string
   email: string
   password: string
 }
-type Data ={
-  success: boolean
-  user: RowDataPacket[]
-}
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<User>
+  res: NextApiResponse<User[]>
 ) {
 
   // Conexão com o banco
   const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '1234',
-    database: 'user',
+    password: '123456',
+    database: 'simulacao',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -32,28 +27,21 @@ export default async function handler(
 
   try {
     // executa sql no banco
-    const [result] = await pool.query<RowDataPacket[]>('SELECT * FROM users')
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM users')
 
-    if ((result as RowDataPacket[]).length > 0) {
+    // percorre e extrai resultado (users)
+    const users = rows.map((row) => ({
+      id: row.id,
+      name: row.name,
+      email: row.email,
+      password: row.password
+    }))
 
-      const user = result[0] as User;
-      res.status(200).json(user);
-
-    } else {
-      res.status(404).json({
-        success: true,
-        id: 0,
-        name: '',
-        email: '',
-        password: ''
-      });
-    }
+    // manda o retorno (lista de users)
+    return res.status(200).json(users)
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: true,
-      id: 0,
-      name: '',
-      email: '',
-      password: '' });
+    
+    console.error(error)
+    return error
   }
 }

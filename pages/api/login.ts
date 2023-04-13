@@ -18,16 +18,20 @@ export default async function handler(
   const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '1234',
-    database: 'user',
+    password: '123456',
+    database: 'simulacao',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
   })
 
+  const email = req.body.email;
+  const password = req.body.password;
+
+
   try {
     // executa sql no banco
-    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM users')
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM users WHERE email=? AND password = ?', [email, password]);
 
     // percorre e extrai resultado (users)
     const users = rows.map((row) => ({
